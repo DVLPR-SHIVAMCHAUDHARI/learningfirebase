@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "551531978702",
+    "project_id": "loginpage-8e6dd",
+    "storage_bucket": "loginpage-8e6dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551531978702:android:b8046d4981d1f8fa58159f",
+        "android_client_info": {
+          "package_name": "com.example.e_com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBmh0TiZSEKUBTQPE_W8rOA7A9GeUbB0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
