@@ -4,13 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 bool isPass = false;
 
-TextField customtextfield({
-  icon1,
-  Widget? suffixicon,
-  hint,
-  bool obs = false,
-}) {
-  return TextField(
+customtextfield(
+    {icon1,
+    Widget? suffixicon,
+    hint,
+    bool obs = false,
+    controller,
+    required = false}) {
+  return TextFormField(
+    validator: required
+        ? (value) {
+            if (value == null || value == "") {
+              return "this field is required";
+            }
+          }
+        : null,
+    controller: controller,
     obscureText: obs,
     decoration: InputDecoration(
       suffixIcon: suffixicon,

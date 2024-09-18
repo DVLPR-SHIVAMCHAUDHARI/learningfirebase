@@ -1,5 +1,6 @@
 import 'package:e_com/consts/coller_pallet.dart';
 import 'package:e_com/consts/customtextfield.dart';
+import 'package:e_com/controllers/auth_controller.dart';
 import 'package:e_com/views/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,16 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  bool isLoading = false;
+
+  set loading(value) {
+    setState(() {
+      isLoading = value;
+    });
+  }
+
+  TextEditingController emailField = TextEditingController();
+  TextEditingController passField = TextEditingController();
   bool _isPass = false;
   @override
   Widget build(BuildContext context) {
@@ -36,11 +47,14 @@ class _SignInState extends State<SignIn> {
             height: 46.h,
           ),
           customtextfield(
-              icon1: Icons.person_outline, hint: "Email or User Name"),
+              controller: emailField,
+              icon1: Icons.person_outline,
+              hint: "Email or User Name"),
           SizedBox(
             height: 40.h,
           ),
           customtextfield(
+              controller: passField,
               obs: _isPass,
               hint: "Password",
               icon1: Icons.lock_outline,
@@ -75,11 +89,26 @@ class _SignInState extends State<SignIn> {
             height: 50.h,
             width: double.infinity,
             child: FilledButton(
-                onPressed: () {},
-                child: Text(
-                  "Sign in",
-                  selectionColor: Colors.white,
-                )),
+                onPressed: () async {
+                  loading = true;
+                  await AuthController()
+                      .signIn(email: emailField.text, password: passField.text);
+
+                  loading = false;
+                },
+                child: isLoading
+                    ? SizedBox(
+                        width: 10,
+                        height: 10,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : Text(
+                        "Sign in",
+                        selectionColor: Colors.white,
+                      )),
           ),
           SizedBox(
             height: 100.h,
